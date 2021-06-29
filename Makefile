@@ -9,19 +9,7 @@ MY_DATE := $(shell date +'%Y%m%d')
 
 # Dotfiles
 DOTFILES_DIR := $(MY_DIR)/dotfiles
-
-MY_FILES :=
-	vim
-	vimrc
-	gitconfig
-	bashrc
-	bash_prompt
-	my_exports
-	my_paths
-	my_aliases
-	my_nvm
-	my_pyenv
-
+MY_FILES := $(shell ls -A $(DOTFILES_DIR))
 DOTFILES := $(addprefix $(HOME)/,$(MY_FILES))
 
 # Prints a help for the Makefile
@@ -30,8 +18,8 @@ help: ## This help
 	@awk 'BEGIN {FS = ":.*?## "} /^[a-zA-Z_-]+:.*?## / {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}' $(MAKEFILE_LIST)
 
 # Make targets PHONY
-.PHONY: all link preflight postactions
-all: preflight link postactions ## make all targets
+.PHONY: all link
+all: link ## make all targets
 
 link: | $(DOTFILES) ## add dotfiles // actually copy not linking
 
