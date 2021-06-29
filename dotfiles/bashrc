@@ -34,3 +34,6 @@ for file in ~/.bash_prompt ~/.my_{aliases,exports,nvm,paths,pyenv} ; do
     [ -r "$file" ] && source "$file"
 done
 unset file
+
+# ceompletion for Makefiles
+complete -W "\`grep -oE '^[a-zA-Z0-9_.-]+:([^=]|$)' Makefile | sed 's/[^a-zA-Z0-9_.-]*$//'\`" make
