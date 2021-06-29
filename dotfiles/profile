@@ -1,1 +1,11 @@
+
+# silence zsh std shell warning
+export BASH_SILENCE_DEPRECATION_WARNING=1
+
+# source bashrc
 [[ -s ~/.bashrc ]] && source ~/.bashrc
+
+# pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init --path)"
