@@ -1,0 +1,35 @@
+# Give me 256 colors! gnome-terminal hardcodes TERM to xterm...
+[ $TERM = xterm ] && export TERM=xterm-256color
+
+# need HOST variable
+test -z "${HOST}" && HOST=`hostname` # && echo "set HOST=${HOST}"
+
+# Xmodmap
+[[ $OSTYPE =~ ^linux ]] && [[ -f `which xmodmap` ]] && [[ -r "$HOME/.Xmodmap" ]] && xmodmap "$HOME/.Xmodmap"
+
+# bash completion
+[ -r "/usr/local/etc/bash_completion" ] && source "/usr/local/etc/bash_completion"
+[ -r "/usr/share/bash-completion/bash_completion" ] && source "/usr/share/bash-completion/bash_completion"
+
+# dircolors
+which dircolors &>/dev/null && [[ -f "$HOME/.dircolors" ]] && eval $(dircolors $HOME/.dircolors)
+
+# history
+export HISTCONTROL="ignoreboth"
+export HISTIGNORE="ls:cd:cd -:pwd:exit:date:reboot"
+
+# display
+[ -z "$DISPLAY" ] && DISPLAY=":0.0"
+
+# https://www.cyberciti.biz/tips/understanding-linux-unix-umask-value-usage.html
+umask 077
+
+# shell options
+shopt -s checkwinsize
+stty -ixon
+
+# additional files to source
+for file in ~/.bash_prompt ~/.my_{aliases,exports,nvm,paths,pyenv} ; do
+    [ -r "$file" ] && source "$file"
+done
+unset file

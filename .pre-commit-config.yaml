@@ -1,0 +1,60 @@
+exclude: 'docs|node_modules|migrations|.git|.tox|static|.idea'
+fail_fast: true
+default_stages:
+  - "commit"
+default_language_version:
+  python: python3.8
+
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.0.1
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-added-large-files
+      - id: check-docstring-first
+      - id: check-executables-have-shebangs
+      - id: check-json
+      - id: check-shebang-scripts-are-executable
+      - id: check-merge-conflict
+      - id: check-symlinks
+      - id: detect-private-key
+      - id: fix-encoding-pragma
+
+  # - repo: https://github.com/pre-commit/mirrors-autopep8
+  #   rev: v1.4.3
+  #   hooks:
+  #     - id: autopep8
+  #
+  # - repo: https://gitlab.com/pycqa/flake8
+  #   rev: 3.9.2
+  #   hooks:
+  #     - id: flake8
+  #       name: flake8
+  #       args:
+  #         - "--config=yatt/setup.cfg"
+  #         - "yatt/app/"
+
+#-   repo: https://github.com/asottile/pyupgrade
+#    rev: v1.12.0
+#    hooks:
+#    -   id: pyupgrade
+#        args: [--py36-plus]
+#
+#-   repo: local
+#    hooks:
+#    -   id: generate-readme
+#        name: generate readme
+#        entry: ./generate-readme
+#        language: python
+#        additional_dependencies: [pyyaml]
+#        files: ^(\.pre-commit-hooks.yaml|generate-readme)$
+#        pass_filenames: false
+#    -   id: run-tests
+#        name: run tests
+#        entry: pytest tests
+#        language: python
+#        additional_dependencies: [pre-commit, pytest]
+#        always_run: true
+#        pass_filenames: false

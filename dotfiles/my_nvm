@@ -1,0 +1,20 @@
+if [[ -d "$HOME/.nvm" ]];
+then
+
+  # NVM install, see https://github.com/creationix/nvm
+  export NPM_PACKAGES="${HOME}/.npm-packages"
+  export NODE_PATH="$NPM_PACKAGES/lib/node_modules${NODE_PATH:+:$NODE_PATH}"
+  export PATH="$NPM_PACKAGES/bin:$PATH"
+  export NVM_DIR="$HOME/.nvm"
+
+  # man path settings
+  unset MANPATH  # delete if you already modified MANPATH elsewhere in your config
+  export MANPATH="$NPM_PACKAGES/share/man:$(manpath)"
+
+  # This loads nvm
+  [ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh"
+
+  # This loads nvm bash_completion
+  [ -s "$NVM_DIR/bash_completion" ] && source "$NVM_DIR/bash_completion"
+
+fi
