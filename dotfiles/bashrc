@@ -8,8 +8,9 @@ test -z "${HOST}" && HOST=`hostname` # && echo "set HOST=${HOST}"
 [[ $OSTYPE =~ ^linux ]] && [[ -f `which xmodmap` ]] && [[ -r "$HOME/.Xmodmap" ]] && xmodmap "$HOME/.Xmodmap"
 
 # bash completion
-[ -r "/usr/local/etc/bash_completion" ] && source "/usr/local/etc/bash_completion"
-[ -r "/usr/share/bash-completion/bash_completion" ] && source "/usr/share/bash-completion/bash_completion"
+[[ -r "/usr/local/etc/bash_completion" ]] && source "/usr/local/etc/bash_completion"
+[[ -r "/usr/share/bash-completion/bash_completion" ]] && source "/usr/share/bash-completion/bash_completion"
+[[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && source "/usr/local/etc/profile.d/bash_completion.sh"
 
 # dircolors
 which dircolors &>/dev/null && [[ -f "$HOME/.dircolors" ]] && eval $(dircolors $HOME/.dircolors)
